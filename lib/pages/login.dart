@@ -50,8 +50,12 @@ class _LoginState extends State<Login> {
       Navigator.of(context).pop();
       var jsonResponse = convert.jsonDecode(response.body);
       int code = jsonResponse['code'];
+      String messageId = jsonResponse['body'];
       if(code == 0){
-        Navigator.of(context).pushNamed(CodeVerification.routeName);
+        Navigator.of(context).pushNamed(CodeVerification.routeName, arguments: {
+          Constants.USER_ID : _userIDController.text,
+          Constants.MESSAGE_ID : messageId,
+        });
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Enter the code sent to your phone'), backgroundColor: Colors.greenAccent,));
 
       } else {
@@ -118,7 +122,7 @@ class _LoginState extends State<Login> {
                           color: Colors.grey,
                         ),
                       ),
-                      Text(' '),
+                      Text(Constants.RESEND_CODE),
                       Text(
                         Constants.REGISTER,
                         style: Theme.of(context).textTheme.subtitle1,

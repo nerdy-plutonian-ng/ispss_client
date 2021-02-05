@@ -206,6 +206,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.9.2+2"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.16.1"
   io:
     dependency: transitive
     description:
@@ -477,6 +484,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.12-nullsafety.9"
+  timer_count_down:
+    dependency: "direct main"
+    description:
+      name: timer_count_down
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4+1"
   typed_data:
     dependency: transitive
     description:

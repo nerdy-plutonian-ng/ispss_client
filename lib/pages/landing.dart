@@ -1,9 +1,27 @@
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/constants.dart';
 import '../pages/login.dart';
+import '../pages/home.dart';
 
 class Landing extends StatelessWidget {
+
+  Future<double> getMMC() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return ((prefs.getDouble(Constants.MMC)) ?? -1);
+  }
+
+  void start(BuildContext context) async {
+    double mmc = await getMMC();
+    if(mmc < 0){
+      Navigator.of(context).pushNamed(Login.routeName);
+    } else {
+      Navigator.of(context).pushNamed(Home.routeName);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +56,8 @@ class Landing extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: (){
-                  Navigator.of(context).pushNamed(Login.routeName);
-                },//_showLoginSheet(context),
+                  start(context);
+                },
                 child: Text(
                   Constants.START,
                 ),
